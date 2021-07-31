@@ -1,20 +1,25 @@
-const grpcFolderclient          = require('../../grpcClient/grpcFolderclient')
+const grpcFileclient             = require('../../grpcClient/grpcFileclient')
 const { validationResult }      = require('express-validator')
-const createFolder   = (req,res) => {
+
+const createFile   = (req,res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(400).json({result : false, errors: errors.array() })
     }
+
     try{
-        grpcClient = grpcFolderclient()
-        const folderRequest = {
+        grpcClient = grpcFileclient()
+        const fileRequest = {
             token  : req.token,
             name   : req.body.name
         }
         if(req.body.parentFolderId){
-            folderRequest.parentFolderId = req.body.parentFolderId
+            fileRequest.parentFolderId = req.body.parentFolderId
         }
-        grpcClient.create(folderRequest, (err, response) => {
+        if(req.body.content){
+            fileRequest.content = req.body.content
+        }
+        grpcClient.create(fileRequest, (err, response) => {
             if(err){
                 return res.status(500).json({result : false, error : err.message});
             }
@@ -26,7 +31,9 @@ const createFolder   = (req,res) => {
     }catch(err){
         return res.status(500).json({result : false, error : err.message});
     }
-}        
+}
 
 
-module.exports = createFolder;
+
+
+module.exports = createFile;
