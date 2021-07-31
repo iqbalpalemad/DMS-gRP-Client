@@ -8,6 +8,7 @@ const createFolder   = (req,res) => {
     try{
         grpcClient = grpcUserClient()
         const folderRequest = {
+            token  : req.token,
             name   : req.body.name,
             userId : req.body.userId
         }

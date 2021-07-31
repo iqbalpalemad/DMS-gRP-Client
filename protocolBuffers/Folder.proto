@@ -9,9 +9,9 @@ service folderService {
 
 
 message folderRequest {
-    string  name           = 1;
-    string  userId         = 2;
-    string  parentFolderId = 3;
+    string  token          = 1;
+    string  name           = 2;
+    string  parentFolderId = 4;
 }
 
 message folderResponse {
