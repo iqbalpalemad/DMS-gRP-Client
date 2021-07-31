@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+
+package folderPackage;
+
+service folderService {
+    rpc create (folderRequest) returns (folderResponse);
+}
+
+
+message folderRequest {
+    string  name           = 1;
+    string  userId         = 2;
+    string  parentFolderId = 3;
+}
+
+message folderResponse {
+    bool   result   = 1;
+    string message  = 2;
+    string folderId = 3;
+}

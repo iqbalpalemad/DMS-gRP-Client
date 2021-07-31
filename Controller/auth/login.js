@@ -2,12 +2,13 @@ const grpcUserClient            = require('../../grpcClient/grpcUserClient')
 const { validationResult }      = require('express-validator')
 
 const login = async (req,res) => {
-    grpcClient = grpcUserClient()
+    
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(400).json({result : false, errors: errors.array() })
     }
     try{
+        grpcClient = grpcUserClient()
         const userRequest = {
             email    : req.body.email,
             password : req.body.password

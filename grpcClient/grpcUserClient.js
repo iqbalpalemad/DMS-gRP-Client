@@ -3,14 +3,13 @@ const protoLoader           = require("@grpc/proto-loader");
 
 
 const grpcUserclient        = () => {
-console.log(process.env.GRPC_HOST)
-const protoPath             = './protocolBuffers/User.proto';
+    const protoPath             = './protocolBuffers/User.proto';
 
-const userPackageDef        = protoLoader.loadSync(protoPath,{});
-const userGrpcObject        = grpc.loadPackageDefinition(userPackageDef);
-const userPackage           = userGrpcObject.userPackage;
-return  new userPackage.userService(process.env.GRPC_HOST , 
-                                            grpc.credentials.createInsecure());
+    const userPackageDef        = protoLoader.loadSync(protoPath,{});
+    const userGrpcObject        = grpc.loadPackageDefinition(userPackageDef);
+    const userPackage           = userGrpcObject.userPackage;
+    return  new userPackage.userService(process.env.GRPC_HOST , 
+                                                grpc.credentials.createInsecure());
 }
 
 
