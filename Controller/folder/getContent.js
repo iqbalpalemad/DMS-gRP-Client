@@ -5,9 +5,8 @@ const getFolderContents   = (req,res) => {
         grpcClient = grpcFolderclient()
         const folderRequest = {
             token  : req.token,
-            name : "",
-            parentFolderId : "",
-            folderId : req.params.folderId
+            folderId : req.params.folderId,
+            type : req.params.type
         }
 
         grpcClient.getContent(folderRequest, (err, response) => {

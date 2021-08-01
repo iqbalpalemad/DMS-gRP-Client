@@ -15,5 +15,5 @@ router.put('/:folderId',userAuth,validate.folderUpdateValidation(),updateFolder)
 router.delete('/:folderId',userAuth,deleteFolder);
 router.post('/move/:folderId/:parentFolderId',userAuth,moveFolder)
 router.get('/:folderId',userAuth,getFolder);
-router.get('/:folderId/content',userAuth,getFolderContents);
+router.get('/:folderId/content/:type',userAuth,getFolderContents);
 module.exports = router;
