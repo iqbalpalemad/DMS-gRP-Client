@@ -1,25 +1,34 @@
-const grpcFileclient             = require('../../grpcClient/grpcFileclient')
-const { validationResult }       = require('express-validator')
+const grpcFileClient            = require('../../grpcClient/grpcFileClient')
+const { validationResult }      = require('express-validator')
 
-const createFile   = (req,res) => {
+const updateFile   = (req,res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.status(400).json({result : false, errors: errors.array() })
     }
 
     try{
-        grpcClient = grpcFileclient()
+        grpcClient = grpcFileClient()
         const fileRequest = {
             token  : req.token,
-            name   : req.body.name
+            name : "",
+            parentFolderId : "",
+            fileId : req.params.fileId
         }
+
         if(req.body.parentFolderId){
             fileRequest.parentFolderId = req.body.parentFolderId
         }
+
+        if(req.body.name){
+            fileRequest.name = req.body.name
+        }
+
         if(req.body.content){
             fileRequest.content = req.body.content
         }
-        grpcClient.create(fileRequest, (err, response) => {
+
+        grpcClient.update(fileRequest, (err, response) => {
             if(err){
                 return res.status(500).json({result : false, error : err.message});
             }
@@ -28,12 +37,10 @@ const createFile   = (req,res) => {
             }
             return res.status(201).json(response);
         })
-    }catch(err){
+    }
+    catch(err){
         return res.status(500).json({result : false, error : err.message});
     }
 }
 
-
-
-
-module.exports = createFile;
+module.exports = updateFile;
