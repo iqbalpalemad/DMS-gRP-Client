@@ -13,4 +13,11 @@ app.use('/auth',authRoute);
 app.use('/folder',folderRoute);
 app.use('/file',fileRoute);
 
+app.use((req, res, next) => {
+    res.status(404).json({
+        result  : false,
+        message : 'requested resource not found'
+    })
+})
+
 module.exports      = app;

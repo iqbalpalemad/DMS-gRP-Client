@@ -1,6 +1,6 @@
 const grpcFolderclient            = require('../../grpcClient/grpcFolderclient')
 
-const deleteFolder   = (req,res) => {
+const getFolder   = (req,res) => {
     try{
         grpcClient = grpcFolderclient()
         const folderRequest = {
@@ -10,14 +10,14 @@ const deleteFolder   = (req,res) => {
             folderId : req.params.folderId
         }
 
-        grpcClient.delete(folderRequest, (err, response) => {
+        grpcClient.get(folderRequest, (err, response) => {
             if(err){
                 return res.status(500).json({result : false, error : err.message});
             }
             if(!response.result){
                 return res.status(400).json(response);
             }
-            return res.status(200).json(response);
+            return res.status(201).json(response);
         })
     }
     catch(err){
@@ -25,4 +25,4 @@ const deleteFolder   = (req,res) => {
     }
 }
 
-module.exports = deleteFolder;
+module.exports = getFolder;
