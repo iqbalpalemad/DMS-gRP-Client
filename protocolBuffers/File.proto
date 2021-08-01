@@ -8,7 +8,7 @@ service fileService {
     rpc update (fileRequest)        returns (fileResponse);
     rpc delete (fileRequest)        returns (fileResponse);
     rpc move   (fileRequest)        returns (fileResponse);
-    rpc get    (folderRequest)      returns (getFileResponse);
+    rpc get    (fileRequest)        returns (getFileResponse);
 }
 
 
@@ -26,11 +26,7 @@ message fileResponse {
     string fileId   = 3;
 }
 
-message getFileResponse {
-    bool   result       = 1;
-    string message      = 2;
-    folderData folder   = 3;
-}
+
 
 message fileData {
     string  name            = 1;
@@ -39,4 +35,10 @@ message fileData {
     string  parentFolderId  = 4;
     string  createdAt       = 5;
     string  updatedAt       = 6;
+}
+
+message getFileResponse {
+    bool     result       = 1;
+    string   message      = 2;
+    fileData file         = 3;
 }
