@@ -40,9 +40,9 @@ message folderData {
 }
 
 message getFolderResponse {
-    bool   result       = 1;
-    string message      = 2;
-    folderData folder   = 3;
+    bool       result       = 1;
+    string     message      = 2;
+    folderData folder       = 3;
 }
 
 message fileData {
@@ -50,15 +50,19 @@ message fileData {
     string userId         = 2;
     string parentFolderId = 3;
     string content        = 4;
-    string  createdAt     = 5;
-    string  updatedAt     = 6;
+    string createdAt      = 5;
+    string updatedAt      = 6;
 }
 
 message getFolderContentResponse {
     bool   result                 = 1;
     string message                = 2;
-    repeated folderData folders   = 3;
-    repeated fileData   files     = 4;
+    string name                   = 3;
+    string userId                 = 4;
+    string folderId               = 5;
+    string parentFolderId         = 6;
+    repeated folderData folders   = 7;
+    repeated fileData   files     = 8;
 }
 
 
