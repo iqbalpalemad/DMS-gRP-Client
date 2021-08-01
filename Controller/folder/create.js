@@ -8,11 +8,9 @@ const createFolder   = (req,res) => {
     try{
         grpcClient = grpcFolderclient()
         const folderRequest = {
-            token  : req.token,
-            name   : req.body.name
-        }
-        if(req.body.parentFolderId){
-            folderRequest.parentFolderId = req.body.parentFolderId
+            token           : req.token,
+            name            : req.body.name,
+            parentFolderId  : req.body.parentFolderId
         }
         grpcClient.create(folderRequest, (err, response) => {
             if(err){

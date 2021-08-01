@@ -16,4 +16,5 @@ message userRequest {
 message userResponse {
     bool   result  = 1;
     string message = 2;
+    string homeFolderId = 3;
 }
