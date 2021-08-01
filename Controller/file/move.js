@@ -1,9 +1,9 @@
-const grpcUserClient            = require('../../grpcClient/grpcFileClient')
+const grpcFileClient            = require('../../grpcClient/grpcFileClient')
 
 const moveFile   = (req,res) => {
 
     try{
-        grpcClient = grpcUserClient()
+        grpcClient = grpcFileClient()
         const fileRequest = {
             token  : req.token,
             name   : "",
@@ -17,7 +17,7 @@ const moveFile   = (req,res) => {
             if(!response.result){
                 return res.status(400).json(response);
             }
-            return res.status(201).json(response);
+            return res.status(200).json(response);
         })
     }
     catch(err){

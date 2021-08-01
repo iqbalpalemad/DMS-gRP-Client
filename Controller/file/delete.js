@@ -1,8 +1,8 @@
-const grpcUserClient            = require('../../grpcClient/grpcFileClient')
+const grpcFileClient            = require('../../grpcClient/grpcFileClient')
 
 const deleteFile   = (req,res) => {
     try{
-        grpcClient = grpcUserClient()
+        grpcClient = grpcFileClient()
         const fileRequest = {
             token  : req.token,
             name : "",

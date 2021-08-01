@@ -1,9 +1,9 @@
-const grpcUserClient            = require('../../grpcClient/grpcFolderclient')
+const grpcFolderclient            = require('../../grpcClient/grpcFolderclient')
 
 const moveFolder   = (req,res) => {
 
     try{
-        grpcClient = grpcUserClient()
+        grpcClient = grpcFolderclient()
         const folderRequest = {
             token  : req.token,
             name : "",
@@ -18,7 +18,7 @@ const moveFolder   = (req,res) => {
             if(!response.result){
                 return res.status(400).json(response);
             }
-            return res.status(201).json(response);
+            return res.status(200).json(response);
         })
     }
     catch(err){

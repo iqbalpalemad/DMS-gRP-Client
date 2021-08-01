@@ -1,4 +1,4 @@
-const grpcUserClient            = require('../../grpcClient/grpcFolderclient')
+const grpcFolderclient            = require('../../grpcClient/grpcFolderclient')
 const { validationResult }      = require('express-validator')
 
 const updateFolder   = (req,res) => {
@@ -8,7 +8,7 @@ const updateFolder   = (req,res) => {
     }
 
     try{
-        grpcClient = grpcUserClient()
+        grpcClient = grpcFolderclient()
         const folderRequest = {
             token  : req.token,
             name : "",

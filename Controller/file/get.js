@@ -17,7 +17,7 @@ const getFile   = (req,res) => {
             if(!response.result){
                 return res.status(400).json(response);
             }
-            return res.status(201).json(response);
+            return res.status(200).json(response);
         })
     }
     catch(err){
